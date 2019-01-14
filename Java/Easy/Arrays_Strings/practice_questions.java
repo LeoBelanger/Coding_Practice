@@ -85,3 +85,49 @@ class Solution {
 /* The main thing to remember for this was to reset i back to i - j after failing.
  * Eitherwise you wouldnt check all possible substrings.
  */
+
+
+// Question #14: Longest Common Prefix
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        if (strs.length == 0) return "";
+
+        Arrays.sort(strs);
+        int len = strs[0].length();
+        char[] first = strs[0].toCharArray();
+        char[] last  = strs[strs.length - 1].toCharArray();
+
+        int i = 0;
+        while (i < len && first[i] == last[i]) {
+            i++;
+        }
+
+        return strs[0].substring(0, i);
+    }
+}
+/* The main thing to remember here is that the smallest length string is the max
+ * length substring. The trick I used was to loop while each substring matched,
+ * once first[i] != last[i], simply exit the loop and return the substring from 0 to i.
+ */
+
+
+// Question #344: Reverse String
+class Solution {
+    public String reverseString(String s) {
+        int startingIndex = 0;
+        int endingIndex = s.length() - 1;
+
+        char[] reverseString = s.toCharArray();
+
+        while (startingIndex < endingIndex) {
+            char temp = reverseString[startingIndex];
+            reverseString[startingIndex] = reverseString[endingIndex];
+            reverseString[endingIndex] = temp;
+            startingIndex++;
+            endingIndex--;
+        }
+
+        return String.copyValueOf(reverseString);
+    }
+}
+//Self Explanitory
