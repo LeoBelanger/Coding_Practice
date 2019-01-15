@@ -131,3 +131,50 @@ class Solution {
     }
 }
 //Self Explanitory
+
+
+// Question #561: Array Partition 1
+class Solution {
+    public int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int sum = 0;
+
+        for(int i = 0; i < nums.length; i += 2) {
+            sum += nums[i];
+        }
+        return sum;
+    }
+}
+/* Trick is to sort the array, and then sum up ever even number. Basically just had to find the math pattern.
+ */
+
+
+// Question #167: Two Sum II
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        int[] twoSumArr = {-1, -1};
+
+        int leftIndex = 0, rightIndex = numbers.length - 1;
+        int sum = 0;
+
+        while(leftIndex < rightIndex) {
+            sum = numbers[leftIndex] + numbers[rightIndex];
+
+            if(sum == target) {
+                twoSumArr[0] = leftIndex + 1;
+                twoSumArr[1] = rightIndex + 1;
+                return twoSumArr;
+            }
+            if(sum > target) rightIndex--;
+            if(sum < target) leftIndex++;
+        }
+        return twoSumArr;
+    }
+}
+/* Since the array is sorted, you used that to your advantage to solve this in O(n) time by iterating through
+ * the array once instead of how you originally solved it using nested for loops. We know the solution exists as well
+ * so there is no need to code for no solutions.
+ */
+
+
+// Question #
