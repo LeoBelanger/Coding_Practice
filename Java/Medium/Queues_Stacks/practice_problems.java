@@ -67,3 +67,46 @@ class MyCircularQueue {
         }
     }
 }
+
+
+
+// Question #200: Number of Islands
+class Solution {
+    private int n, m;
+
+    public int numIslands(char[][] grid) {
+        int numIslands = 0;
+        n = grid.length;
+        if(n == 0) {
+            return 0;
+        }
+        m = grid[0].length;
+
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(grid[i][j] == '1') {
+                    DFS(grid, i, j);
+                    ++numIslands;
+                }
+            }
+        }
+        return numIslands;
+    }
+
+    private void DFS(char[][] grid, int i, int j) {
+        if(i < 0 || j < 0 || i >= n || j >= m || grid[i][j] != '1') {
+            return;
+        }
+
+        //Turn the current node into 0 and recursively change remaining island to 0 as well
+        grid[i][j] = '0';
+        DFS(grid, i + 1, j);
+        DFS(grid, i - 1, j);
+        DFS(grid, i, j + 1);
+        DFS(grid, i, j - 1);
+    }
+}
+/* The main thing with this question is to recursively change all 1's of an island to 0's using DFS(). Once you find the
+ * first 1, you increase count once and then change all linked land to 0's before finally returning and looking for the next
+ * new island. 
+ */
